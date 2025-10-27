@@ -1,0 +1,55 @@
+### Comandos de Diagnóstico de Redes en un Equipo Mac
+
+# Ver la configuración de red actual
+ifconfig
+
+# Ver la tabla de enrutamiento del equipo
+netstat -rn
+
+# Ver la dirección MAC de la interfaz de red
+ifconfig | grep ether
+
+# Diagnóstico de conectividad con otro dispositivo
+ping -c 4 192.168.1.1
+
+# Trazar la ruta hacia un destino
+traceroute 192.168.1.1
+
+# Mostrar las conexiones activas y los puertos en uso
+netstat -an
+
+# Mostrar detalles de las conexiones activas
+netstat -s
+
+# Ver las conexiones establecidas por un proceso específico
+lsof -i -P | grep "PID"
+
+# Renovar la dirección IP asignada por DHCP
+sudo ifconfig en0 down && sudo ifconfig en0 up
+
+# Vaciar la caché de DNS
+sudo killall -HUP mDNSResponder
+
+# Ver los registros de la caché de DNS
+sudo log show --predicate 'subsystem == "com.apple.mDNSResponder"' --info --last 10m
+
+# Probar la conectividad con un puerto específico usando Telnet
+telnet 192.168.1.1 80
+
+# Comprobar la accesibilidad de un recurso compartido
+nc -zv 192.168.1.1 445
+
+# Ver la configuración del firewall
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+
+# Mostrar interfaces de red disponibles
+networksetup -listallhardwareports
+
+# Ver detalles de una conexión WiFi específica
+networksetup -getinfo Wi-Fi
+
+# Listar redes WiFi disponibles
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s
+
+# Ver el perfil de una red WiFi guardada
+networksetup -listpreferredwirelessnetworks en0

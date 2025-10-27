@@ -1,0 +1,52 @@
+### Comandos de Diagnóstico de Redes en un Switch Cisco
+
+# Ver la configuración en ejecución
+show running-config
+
+# Ver la configuración guardada en la NVRAM
+show startup-config
+
+# Mostrar la tabla de direcciones MAC
+show mac address-table
+
+# Mostrar la información de todas las interfaces
+show interfaces
+
+# Mostrar el estado de una interfaz específica
+show interface fa0/1
+
+# Mostrar VLANs configuradas en el switch
+show vlan brief
+
+# Mostrar los puertos troncales activos
+show interfaces trunk
+
+# Mostrar los dispositivos conectados al switch
+show cdp neighbors
+
+# Ver la tabla de enrutamiento
+show ip route
+
+# Ver los detalles de una VLAN específica
+show vlan id 10
+
+# Ver información detallada de una interfaz
+show interfaces gigabitEthernet 1/1 status
+
+# Diagnóstico de conectividad con otro dispositivo
+ping 192.168.1.1
+
+# Trazar la ruta hacia un destino
+traceroute 192.168.1.1
+
+# Ver los logs del sistema
+show logging
+
+# Ver estadísticas de paquetes enviados y recibidos
+show interfaces counters
+
+# Ver errores en los puertos
+show interfaces fa0/1 counters errors
+
+# Salir de los modos de configuración
+exit

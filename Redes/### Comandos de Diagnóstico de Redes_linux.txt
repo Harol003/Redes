@@ -1,0 +1,55 @@
+### Comandos de Diagnóstico de Redes en un Equipo Linux
+
+# Ver la configuración de red actual
+ip a
+
+# Ver la tabla de enrutamiento del equipo
+route -n
+
+# Ver la dirección MAC de la interfaz de red
+ip link show
+
+# Diagnóstico de conectividad con otro dispositivo
+ping -c 4 192.168.1.1
+
+# Trazar la ruta hacia un destino
+traceroute 192.168.1.1
+
+# Mostrar las conexiones activas y los puertos en uso
+netstat -tulnp
+
+# Mostrar detalles de las conexiones activas
+ss -tulnp
+
+# Ver las conexiones establecidas por un proceso específico
+ss -p | grep "PID"
+
+# Renovar la dirección IP asignada por DHCP
+sudo dhclient -r && sudo dhclient
+
+# Vaciar la caché de DNS
+sudo systemd-resolve --flush-caches
+
+# Ver los registros de la caché de DNS
+systemd-resolve --statistics
+
+# Probar la conectividad con un puerto específico usando Telnet
+telnet 192.168.1.1 80
+
+# Comprobar la accesibilidad de un recurso compartido
+nc -zv 192.168.1.1 445
+
+# Ver la configuración del firewall
+sudo iptables -L -v -n
+
+# Mostrar interfaces de red disponibles
+nmcli device status
+
+# Ver detalles de una conexión WiFi específica
+nmcli device wifi show
+
+# Listar redes WiFi disponibles
+nmcli device wifi list
+
+# Ver el perfil de una red WiFi guardada
+nmcli connection show "NombreRed"

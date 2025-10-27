@@ -1,0 +1,99 @@
+### Configuracion de VLANs y Routing en Cisco
+
+# Definición de redes para cada departamento usando CIDR:
+# Contabilidad: 192.168.1.0/25 (Hosts: 126)
+# Sistemas: 192.168.1.128/25 (Hosts: 126)
+# Gerencia: 192.168.2.0/25 (Hosts: 126)
+# Ventas: 192.168.2.128/25 (Hosts: 126)
+
+
+### Configuración del SWITCH 1 (Contabilidad y Sistemas)
+enable
+configure terminal
+
+# Crear VLANs
+vlan 10
+ name CONTABILIDAD
+vlan 20
+ name SISTEMAS
+
+# Asignar puertos a VLANs
+interface range fa0/1 - 50
+ switchport mode access
+ switchport access vlan 10
+
+interface range fa0/51 - 100
+ switchport mode access
+ switchport access vlan 20
+
+# Configurar el puerto troncal hacia el router
+interface gigabitEthernet 1/1
+ switchport mode trunk
+
+end
+write memory
+
+
+### Configuración del SWITCH 2 (Gerencia y Ventas)
+enable
+configure terminal
+
+# Crear VLANs
+vlan 30
+ name GERENCIA
+vlan 40
+ name VENTAS
+
+# Asignar puertos a VLANs
+interface range fa0/1 - 50
+ switchport mode access
+ switchport access vlan 30
+
+interface range fa0/51 - 100
+ switchport mode access
+ switchport access vlan 40
+
+# Configurar el puerto troncal hacia el router
+interface gigabitEthernet 1/1
+ switchport mode trunk
+
+end
+write memory
+
+
+### Configuración del ROUTER
+
+enable
+configure terminal
+
+# Configuración de interfaces VLAN para interconexión
+interface gigabitEthernet 0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.128
+
+interface gigabitEthernet 0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.1.129 255.255.255.128
+
+interface gigabitEthernet 0/1.30
+ encapsulation dot1Q 30
+ ip address 192.168.2.1 255.255.255.128
+
+interface gigabitEthernet 0/1.40
+ encapsulation dot1Q 40
+ ip address 192.168.2.129 255.255.255.128
+
+# Configuración de la interfaz de salida a internet
+interface gigabitEthernet 0/2
+ ip address 192.168.3.1 255.255.255.0
+
+# Configuración de RIP v2 para enrutamiento dinámico
+router rip
+ version 2
+ network 192.168.1.0
+ network 192.168.2.0
+ network 192.168.3.0
+ no auto-summary
+
+end
+write memory

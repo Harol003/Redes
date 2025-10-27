@@ -1,0 +1,56 @@
+### Comandos de Diagnóstico de Redes en un Equipo Windows
+
+# Ver la configuración de red actual
+ipconfig /all
+
+# Ver la tabla de enrutamiento del equipo
+route print
+
+# Ver la dirección MAC de la interfaz de red
+getmac
+
+# Diagnóstico de conectividad con otro dispositivo
+ping 192.168.1.1
+
+# Trazar la ruta hacia un destino
+tracert 192.168.1.1
+
+# Mostrar las conexiones activas y los puertos en uso
+netstat -an
+
+# Mostrar detalles de las conexiones activas
+netstat -s
+
+# Ver las conexiones establecidas por un proceso específico
+netstat -ano | findstr "PID"
+
+# Liberar y renovar la dirección IP asignada por DHCP
+ipconfig /release
+ipconfig /renew
+
+# Vaciar la caché de DNS
+ipconfig /flushdns
+
+# Ver los registros de la caché de DNS
+ipconfig /displaydns
+
+# Probar la conectividad con un puerto específico usando Telnet
+telnet 192.168.1.1 80
+
+# Comprobar la accesibilidad de un recurso compartido
+test-netconnection -computername 192.168.1.1 -port 445
+
+# Ver la configuración del firewall de Windows
+netsh advfirewall show allprofiles
+
+# Mostrar interfaces de red disponibles
+netsh interface show interface
+
+# Ver detalles de una conexión WiFi específica
+netsh wlan show interface
+
+# Listar redes WiFi disponibles
+netsh wlan show networks
+
+# Ver el perfil de una red WiFi guardada
+netsh wlan show profile name="NombreRed" key=clear
