@@ -1,0 +1,66 @@
+enable
+configure terminal
+
+! Configuración básica
+hostname Router2
+enable secret cisco
+service password-encryption
+no ip domain-lookup
+banner motd #Acceso restringido - Router2#
+
+! Configuración de interfaces
+interface GigabitEthernet0/0
+ ip address 192.168.3.1 255.255.255.0
+ description Conexion a Servidor
+ no shutdown
+exit
+
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+exit
+
+interface Serial0/1/0
+ ip address 10.0.0.2 255.255.255.252
+ description Conexion a Router1
+ no shutdown
+exit
+
+interface Serial0/1/1
+ no ip address
+ shutdown
+exit
+
+! Configuración de RIP
+router rip
+ version 2
+ network 10.0.0.0
+ network 192.168.3.0
+ no auto-summary
+exit
+
+! Configuración de ACL para controlar acceso al servidor
+access-list 101 permit tcp any host 192.168.3.2 eq 80
+access-list 101 permit tcp any host 192.168.3.2 eq 443
+access-list 101 permit icmp any host 192.168.3.2
+access-list 101 deny ip any host 192.168.3.2
+access-list 101 permit ip any any
+interface GigabitEthernet0/0
+ ip access-group 101 in
+exit
+
+! Configuración de líneas
+line console 0
+ password cisco
+ login
+exit
+line aux 0
+exit
+line vty 0 4
+ password cisco
+ login
+exit
+
+! Guardar configuración
+end
+write memory

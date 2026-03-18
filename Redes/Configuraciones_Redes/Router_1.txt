@@ -1,0 +1,41 @@
+! Configuración básica
+enable
+configure terminal
+hostname Router1
+enable secret cisco
+line console 0
+password cisco
+login
+exit
+line vty 0 4
+password cisco
+login
+exit
+service password-encryption
+no ip domain-lookup
+banner motd #Acceso restringido - Router1#
+
+! Configuración de interfaces
+interface FastEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ description Conexion a Switch2960
+exit
+interface Serial0/1/0
+ ip address 10.0.0.1 255.255.255.252
+ clock rate 64000
+ no shutdown
+ description Conexion a Router2
+exit
+
+! Configuración de RIP
+router rip
+ version 2
+ network 10.0.0.0
+ network 192.168.1.0
+ no auto-summary
+exit
+
+! Guardar configuración
+end
+write memory

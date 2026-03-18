@@ -1,0 +1,45 @@
+! Configuración básica
+enable
+configure terminal
+hostname Switch2
+enable secret cisco
+line console 0
+password cisco
+login
+exit
+line vty 0 15
+password cisco
+login
+exit
+service password-encryption
+no ip domain-lookup
+banner motd #Acceso restringido - Switch2#
+
+! Configuración de la interfaz de administración
+interface vlan 1
+ ip address 192.168.3.3 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.3.1
+
+! Configuración básica de puertos
+interface range FastEthernet0/1-24
+ description Puertos de acceso estándar
+ switchport mode access
+ exit
+
+! Configuración del puerto para el servidor
+interface FastEthernet0/1
+ description Conexion al Servidor
+ switchport mode access
+ exit
+
+! Configuración del puerto para conexión al Router2
+interface FastEthernet0/24
+ description Uplink a Router2
+ switchport mode access
+ exit
+
+! Guardar configuración
+end
+write memory

@@ -1,0 +1,34 @@
+-----------------------------------------------------
+
+Paso 1: 
+
+Crea una carpeta en tu escritorio llamada Esteganografia.
+
+Coloca dentro de esa carpeta:
+
+Una imagen (por ejemplo, imagen.jpg).
+
+El archivo que quieres ocultar (por ejemplo, secreto.txt).
+
+Paso 2: Comprime el archivo secreto
+
+Haz clic derecho en el archivo secreto.txt y selecciona Enviar a > Carpeta comprimida (zip). Se creará un archivo secreto.zip en la misma carpeta.
+Paso 3: Oculta el archivo en la imagen
+
+Abre el Símbolo del sistema (CMD).
+Navega a la carpeta Esteganografia con el comando:
+
+
+cd Desktop\Esteganografia
+
+copy /b imagen.jpg + secreto.zip imagen_oculta.jpg
+
+-----------------------------------------------------
+
+https://www.openstego.com/
+
+OpenStego
+
+
+
+

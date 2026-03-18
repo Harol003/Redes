@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de Direccionamiento IP, Protocolos y Puertos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e6f2ff;
+        }
+        .section {
+            margin-top: 30px;
+            background-color: #e6f2ff;
+            padding: 10px;
+            border-left: 5px solid #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabla de Direccionamiento IP, Protocolos y Puertos</h1>
+    
+    <div class="section">
+        <h2>Direccionamiento IP</h2>
+    </div>
+    
+    <table>
+        <tr>
+            <th>Dispositivo</th>
+            <th>Interfaz</th>
+            <th>Dirección IP</th>
+            <th>Máscara de Subred</th>
+            <th>Gateway</th>
+        </tr>
+        <tr>
+            <td>Router1</td>
+            <td>FastEthernet0/0</td>
+            <td>192.168.1.1</td>
+            <td>255.255.255.0</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Router1</td>
+            <td>Serial0/1/0</td>
+            <td>10.0.0.1</td>
+            <td>255.255.255.252</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Router2</td>
+            <td>GigabitEthernet0/0</td>
+            <td>192.168.3.1</td>
+            <td>255.255.255.0</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Router2</td>
+            <td>Serial0/1/0</td>
+            <td>10.0.0.2</td>
+            <td>255.255.255.252</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Switch1</td>
+            <td>VLAN1</td>
+            <td>192.168.1.2</td>
+            <td>255.255.255.0</td>
+            <td>192.168.1.1</td>
+        </tr>
+        <tr>
+            <td>Switch2</td>
+            <td>VLAN1</td>
+            <td>192.168.3.3</td>
+            <td>255.255.255.0</td>
+            <td>192.168.3.1</td>
+        </tr>
+        <tr>
+            <td>PC Cliente</td>
+            <td>NIC</td>
+            <td>192.168.1.10</td>
+            <td>255.255.255.0</td>
+            <td>192.168.1.1</td>
+        </tr>
+        <tr>
+            <td>Servidor</td>
+            <td>NIC</td>
+            <td>192.168.3.2</td>
+            <td>255.255.255.0</td>
+            <td>192.168.3.1</td>
+        </tr>
+    </table>
+    
+    <div class="section">
+        <h2>Protocolos Utilizados</h2>
+    </div>
+    
+    <table>
+        <tr>
+            <th>Protocolo</th>
+            <th>Propósito</th>
+            <th>Dispositivos</th>
+            <th>Capa OSI</th>
+        </tr>
+        <tr>
+            <td>RIP v2</td>
+            <td>Enrutamiento dinámico</td>
+            <td>Router1, Router2</td>
+            <td>3 - Red</td>
+        </tr>
+        <tr>
+            <td>HTTP</td>
+            <td>Servicio web</td>
+            <td>Servidor</td>
+            <td>7 - Aplicación</td>
+        </tr>
+        <tr>
+            <td>HTTPS</td>
+            <td>Servicio web seguro</td>
+            <td>Servidor</td>
+            <td>7 - Aplicación</td>
+        </tr>
+        <tr>
+            <td>ICMP</td>
+            <td>Diagnóstico (ping)</td>
+            <td>Todos</td>
+            <td>3 - Red</td>
+        </tr>
+        <tr>
+            <td>DNS</td>
+            <td>Resolución de nombres</td>
+            <td>Servidor, PC Cliente</td>
+            <td>7 - Aplicación</td>
+        </tr>
+        <tr>
+            <td>Port Security</td>
+            <td>Seguridad de puerto</td>
+            <td>Switch1</td>
+            <td>2 - Enlace de Datos</td>
+        </tr>
+        <tr>
+            <td>ACL</td>
+            <td>Control de acceso</td>
+            <td>Router2</td>
+            <td>3 - Red</td>
+        </tr>
+    </table>
+    
+    <div class="section">
+        <h2>Puertos y Servicios</h2>
+    </div>
+    
+    <table>
+        <tr>
+            <th>Servicio</th>
+            <th>Puerto</th>
+            <th>Protocolo de Transporte</th>
+            <th>Dispositivo</th>
+        </tr>
+        <tr>
+            <td>HTTP</td>
+            <td>80</td>
+            <td>TCP</td>
+            <td>Servidor (192.168.3.2)</td>
+        </tr>
+        <tr>
+            <td>HTTPS</td>
+            <td>443</td>
+            <td>TCP</td>
+            <td>Servidor (192.168.3.2)</td>
+        </tr>
+        <tr>
+            <td>DNS</td>
+            <td>53</td>
+            <td>TCP/UDP</td>
+            <td>Servidor (192.168.3.2)</td>
+        </tr>
+        <tr>
+            <td>RIP</td>
+            <td>520</td>
+            <td>UDP</td>
+            <td>Router1, Router2</td>
+        </tr>
+    </table>
+    
+    <div class="section">
+        <h2>Configuración de ACL</h2>
+    </div>
+    
+    <table>
+        <tr>
+            <th>ACL #</th>
+            <th>Regla</th>
+            <th>Acción</th>
+            <th>Aplicada en</th>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>permit tcp any host 192.168.3.2 eq 80</td>
+            <td>Permitir acceso HTTP al servidor</td>
+            <td>Router2 - GigabitEthernet0/0 (entrada)</td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>permit tcp any host 192.168.3.2 eq 443</td>
+            <td>Permitir acceso HTTPS al servidor</td>
+            <td>Router2 - GigabitEthernet0/0 (entrada)</td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>permit icmp any host 192.168.3.2</td>
+            <td>Permitir ping al servidor</td>
+            <td>Router2 - GigabitEthernet0/0 (entrada)</td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>deny ip any host 192.168.3.2</td>
+            <td>Denegar otro tipo de acceso al servidor</td>
+            <td>Router2 - GigabitEthernet0/0 (entrada)</td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>permit ip any any</td>
+            <td>Permitir resto del tráfico</td>
+            <td>Router2 - GigabitEthernet0/0 (entrada)</td>
+        </tr>
+    </table>
+</body>
+</html>

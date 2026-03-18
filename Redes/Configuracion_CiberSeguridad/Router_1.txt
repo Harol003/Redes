@@ -1,0 +1,80 @@
+!
+! Configuración del Router Cisco 1941 (Politecnico)
+!
+enable
+configure terminal
+hostname Politecnico
+!
+! Configuración de la interfaz WAN (Salida a Internet)
+interface GigabitEthernet0/0
+ ip address dhcp
+ no shutdown
+!
+! Configuración de la interfaz LAN
+interface GigabitEthernet0/1
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+! Habilitar NAT para salida a Internet
+ip nat inside source list 1 interface GigabitEthernet0/0 overload
+access-list 1 permit 192.168.1.0 0.0.0.255
+!
+! Configuración de DHCP para los PCs
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp pool RED_LAN
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 8.8.8.8
+!
+! Configuración de seguridad (Contraseñas y SSH)
+line console 0
+ password cisco
+ login
+!
+line vty 0 4
+ password cisco
+ login
+ transport input ssh
+!
+enable secret cisco
+!
+ip route 0.0.0.0 0.0.0.0 dhcp
+!
+end
+write memory
+!
+
+!
+! Configuración del Switch Cisco 2960 (Sede_Sur)
+!
+enable
+configure terminal
+hostname Sede_Sur
+!
+! Configuración de la interfaz de administración
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+!
+! Configuración de Port Security en los puertos de los PCs
+interface range FastEthernet0/1 - 6
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+!
+! Configuración de seguridad en el switch
+line console 0
+ password cisco
+ login
+!
+line vty 0 4
+ password cisco
+ login
+!
+enable secret cisco
+!
+end
+write memory
+!

@@ -1,0 +1,37 @@
+! Configuración básica
+enable
+configure terminal
+hostname Switch1
+enable secret cisco
+line console 0
+password cisco
+login
+exit
+line vty 0 15
+password cisco
+login
+exit
+service password-encryption
+no ip domain-lookup
+banner motd #Acceso restringido - Switch1#
+
+! Configuración de la interfaz de administración
+interface vlan 1
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.1.1
+
+! Configuración de Port Security
+interface FastEthernet0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+ description Conexion al PC Cliente
+ exit
+
+! Guardar configuración
+end
+write memory

@@ -1,0 +1,34 @@
+!
+! Configuración del Switch Cisco 2960 (Sede_Sur)
+!
+enable
+configure terminal
+hostname Sede_Sur
+!
+! Configuración de la interfaz de administración
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+!
+! Configuración de Port Security en los puertos de los PCs
+interface range FastEthernet0/1 - 6
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+!
+! Configuración de seguridad en el switch
+line console 0
+ password cisco
+ login
+!
+line vty 0 4
+ password cisco
+ login
+!
+enable secret cisco
+!
+end
+write memory
+!
